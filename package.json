@@ -1,0 +1,8 @@
+{
+  "name": "juni",
+  "version": "0.1.0",
+  "description": "A tree-based build system.",
+  "main": "index.js",
+  "author": "Joseph North",
+  "license": "MIT"
+}
