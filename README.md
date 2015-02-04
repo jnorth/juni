@@ -104,4 +104,48 @@ modify the tree.
 `Tree.filter(regex, fn)` — Call a function `fn(tree)` for each item whos path
 basename matches the `regex`.
 
-`Tree.pipe(plugin)` — Pass the tree through a plugin.
+`Tree.pipe(transform)` — Pass the tree through a transform function.
+
+## Writing Plugins
+
+The `Tree.pipe` method expects a function that accepts a `Tree` object. The
+return value doesn't matter. We call this a `transform` function.
+
+Typically a plugin might want to accept options or other input though, so by
+convention, a juni plugin is a function that accepts any arguments and returns a
+transform function. An example makes this clearer:
+
+```js
+// Here is a simple transform function that will append some text to all files
+// in a juni tree.
+var appender = function(tree) {
+  tree.all(function(item){
+    if (item.isFile()) {
+      item.setContents(item.contents().toString() + "Appender was here!");
+    }
+  });
+};
+
+tree.pipe(appender);
+
+// This would be much more useful if we could specifiy the text to append.
+// Let's make a simple plugin
+var appender = function(appendString) {
+  // Return a transform function
+  return function(tree) {
+    tree.all(function(item){
+      if (item.isFile()) {
+        item.setContents(item.contents().toString() + appendString);
+      }
+    });
+  };
+};
+
+// Our appender plugin is now a plugin--it has to be called before it is passed
+// to `Tree.pipe`.
+var dateAppender = appender(new Date());
+tree.pipe(dateAppender);
+
+// or simply
+tree.pipe(appender(new Date()));
+```
