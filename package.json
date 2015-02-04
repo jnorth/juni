@@ -4,5 +4,12 @@
   "description": "A tree-based build system.",
   "main": "index.js",
   "author": "Joseph North",
-  "license": "MIT"
+  "license": "MIT",
+  "keywords": [
+    "juni"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jnorth/juni"
+  }
 }
