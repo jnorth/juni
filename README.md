@@ -70,7 +70,7 @@ tree.
 `Tree.path()` — Get the absolute path to the tree. This is typically the value
 that was set in the constructor, though plugins can change it.
 
-`Tree.setPath(newPath)` — Set the absolute path to the tree on the filesystem.
+`Tree.setPath(path)` — Set the absolute path to the tree on the filesystem.
 
 `Tree.isDirectory()` — Returns true if the tree is a directory.
 
@@ -86,10 +86,11 @@ for files and empty directories.
 
 `Tree.children()` — Returns an array of child trees.
 
-`Tree.contents()` — Returns a tree's file contents, either as a string or a
-buffer. Only makes sense for `isFile` trees.
+`Tree.contents()` — Returns a tree's file contents, either as a buffer. Only
+makes sense for `isFile` trees.
 
-`Tree.setContents(newContents)` — Set a tree's file contents.
+`Tree.setContents(contents)` — Set a tree's file contents. `contents`
+should be a buffer or a string.
 
 `Tree.remove()` — Removes a tree from its parent tree.
 
